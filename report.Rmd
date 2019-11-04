@@ -1,0 +1,81 @@
+---
+title: "SNA REPORT"
+output: html_document
+params:
+  rawData: NA
+  instructorsName: NA
+  facultyName: NA
+---
+
+```{r}
+library(shiny)
+library(tidyverse)
+library(visNetwork)
+library(DT)
+library(stringi)
+library(shinyalert)
+library(rsconnect)
+params$rawData
+params$instructorsName
+params$facultyName
+instructors <- params$rawData %>%
+      select(instructorsName()) %>%
+      distinct() %>%
+      rename(labelName = params$instructorsName) %>%
+      mutate(label2 = "(L)")%>%
+      unite("label", labelName:label2, sep=" ")
+
+instructors <- mutate(instructors, group = "Librarian")
+    
+    faculty <- params$rawData %>%
+      select(facultyName()) %>%
+      distinct() %>%
+      rename(labelName = params$facultyName%>%
+      mutate(label2 = "(F)")%>%
+      unite("label", labelName:label2, sep=" ")
+    
+    faculty <- mutate(faculty, group = "Faculty")
+    
+    nodes <- full_join(instructors, faculty)
+    
+    nodes <- nodes %>%
+      rowid_to_column("id")
+    
+    nodes <- mutate(nodes, title = label)
+    
+    per_act <- full_join(instructors,faculty)
+    
+    per_act <- rv$rawData %>%
+      group_by_( instructorsName(), facultyName() ) %>%
+      summarise(weight = n()) %>%
+      rename( ins = instructorsName()) %>%
+      rename( fact = facultyName()) %>%
+      mutate( inslabel = "(L)") %>%
+      mutate( factlabel = "(F)") %>%
+      unite("uniteins", c("ins","inslabel"), sep=" ") %>%
+      unite("unitefact", c("fact","factlabel"), sep=" ") %>%
+      ungroup()
+        
+    edges <- per_act %>% 
+      left_join(nodes, by = c( uniteins = "label")) %>% 
+      rename(from = id)
+    
+    
+    edges <- edges %>% 
+      left_join(nodes, by = c( unitefact = "label")) %>% 
+      rename(to = id)
+    
+    edges <- select(edges, from, to, weight)
+    
+    edges <- mutate(edges, title = "Instruction")
+    
+    
+    network <- visNetwork(nodes, edges) %>%
+      visPhysics(solver = "forceAtlas2Based") %>%
+      visInteraction(hover = TRUE) %>%
+      visEdges(smooth = FALSE) %>%
+      visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE, selectedBy = "group") %>%
+      visEvents(hoverNode = "function(nodes) {
+                Shiny.onInputChange('current_node_id', nodes);
+                ;}")
+```

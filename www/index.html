@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SNA</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+ 
+    <script type="application/shiny-singletons">4d61fcd65165225d66b68a85746344f43fdea1ab</script>
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];shiny[1.3.2];selectize[0.11.2];htmlwidgets[1.3];datatables-css[0.0.0];datatables-binding[0.9];crosstalk[1.0.0];vis[4.20.1];visNetwork-binding[2.0.8];bootstrap[3.3.7]</script>
+<script src="assets/json2-min.js"></script>
+<script src="assets/jquery.min.js"></script>
+<link href="assets/shiny.css" rel="stylesheet" />
+<script src="assets/shiny.min.js"></script>
+<link href="assets/selectize.bootstrap3.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="shared/selectize/js/es5-shim.min.js"></script>
+<![endif]-->
+<script src="assets/selectize.min.js"></script>
+<script src="assets/htmlwidgets.js"></script>
+<link href="assets/datatables-crosstalk.css" rel="stylesheet" />
+<script src="assets/datatables.js"></script>
+<link href="assets/crosstalk.css" rel="stylesheet" />
+<script src="assets/crosstalk.min.js"></script>
+<link href="assets/vis.css" rel="stylesheet" />
+<script src="assets/vis.min.js"></script>
+<script src="assets/visNetwork.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="assets/bootstrap.min.js"></script>
+<script src="assets/html5shiv.min.js"></script>
+<script src="assets/respond.min.js"></script>
+<script src="assets/sweetalert.min.js"></script>
+<link rel="stylesheet" href="assets/sweetalert.min.css"/>
+<script src="assets/shinyalert.js"></script>
+<link href="css/resume.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="https://dss.ncf.edu/main/user/images/g5_hydrogen/ncfbloud.png" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#welcome">Welcome!</a>
+        </li>
+        <li class="nav-item" id="fileUploadMenu">
+          <a class="nav-link js-scroll-trigger"  href="#fileupload">File Upload</a>
+        </li>
+        <li class="nav-item" id="dataVerificationMenu" style="display:none;">
+          <a class="nav-link js-scroll-trigger"  href="#dataverification">Data Verification</a>
+        </li>
+        <li class="nav-item" id="resultsMenu" style="display:none;">
+          <a class="nav-link js-scroll-trigger"  href="#results">Result</a>
+        </li>
+        <li class="nav-item" id="exportMenu" style="display:none;">
+          <a class="nav-link js-scroll-trigger"  href="#export">Export</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="welcome">
+      <div class="w-100">
+        <h1 class="mb-0">Social Network
+          <span class="text-primary">Analysis</span>
+        </h1>
+        <p class="lead mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a class="btn btn-primary js-scroll-trigger" href="#fileupload">Continue</a>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="fileupload">
+      <div class="w-100">
+        <h2>File Upload</h2>
+        <p>In this section, you can upload the dataset you have or you can simply select one of the example datasets to experience SNA. After selecting the dataset, you will be able to select the columns that indicate your faculty and librarians. <br /><br />
+        If you are uploading your own dataset, please make sure that you are uploading a csv file and it is comma seperated.</p>
+
+        <div class="container-fluid" style="margin-top:40px">
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <label>Choose an example dataset</label>
+            <div class="form-group shiny-input-container">
+            <div>
+              <select id="selection" name="selection" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);'><option value="" disabled selected>Select a dataset</option><option value="dataset.csv">dataset.csv</option></select>
+              <script type="application/json" data-for="selection" data-nonempty="">{}</script>
+            </div>
+          </div>
+          </div>
+          <div class="col-sm-6 col-md-6 border-left">
+            <label>Upload your own dataset</label>
+            <div class="form-group shiny-input-container">
+            <div class="input-group">
+              <label class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                  Browse...
+                  <input id="file1" name="file1" type="file" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);' style="display: none;" accept="text/csv,text/comma-separated-values,text/plain,.csv"/>
+                </span>
+              </label>
+              <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
+            </div>
+            <div id="file1_progress" class="progress progress-striped active shiny-file-input-progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" id="nextpartTextFileUpload" style="display:none; margin-top:10px" role="alert"> Great! Now, you can continue to the data verification part.</div>
+      <a id="fileuploadcontinue" class="btn btn-primary js-scroll-trigger" onClick='$("#dataverification").css("visibility", "visible"); $("#dataVerificationMenu").show();' href="#dataverification" style="pointer-events: none; opacity:0.3">Continue</a>
+
+      </div>
+
+    </section>
+
+    <hr class="m-0">
+    <section class="resume-section p-3 p-lg-5 justify-content-center" id="dataverification" style="visibility:hidden;">
+      <div class="w-100">
+        <h2 class="mb-5">Data verification</h2>
+        <p> Please indicate the column names that represent "Instructors" and "Faculty" </p>
+        <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <div class="form-group shiny-input-container">
+                  <label>Instructors column ( librarians )</label>
+                  <select id="instructorsname" name="instructorsname">
+                      <option value="" disabled selected>Select a dataset</option>
+                      <option value="dataset.csv">dataset.csv</option>
+                  </select>      
+            
+                  <label>Faculty column ( faculty members )</label>
+                  <select id="facultyname" name="facultyname">
+                      <option value="" disabled selected>Select a dataset</option>
+                      <option value="dataset.csv"></option>
+                  </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <div id="contents" name="contents" style="width:80%; height:auto;" class="datatables html-widget html-widget-output"></div>
+
+            <br /><br />
+            <a class="btn btn-primary js-scroll-trigger" onClick='$("#results").css("visibility", "visible"); $("#resultsMenu").show();' href="#results">Continue</a>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 align-items-center" id="results" style="visibility:hidden;">
+      <div class="w-100">
+        <h2 class="mb-5">Results</h2>
+
+        <div id="network" name="network" style="width:100%; height:400px; " class="visNetwork html-widget html-widget-output"></div>
+
+        <a class="btn btn-primary js-scroll-trigger" onClick='$("#export").css("visibility", "visible"); $("#exportMenu").show();' href="#export">Want to export the results ?</a>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 align-items-center" id="export" style="visibility: hidden;">
+      <div class="w-100">
+        <h2 class="mb-5">Export</h2>
+        <p>Export the results, use it in your reports and presentations.</p>
+        <a id="report" name="report" class="btn btn-default shiny-download-link " href="" target="_blank" download>
+            <i class="fa fa-download"></i>
+            Generate report
+          </a>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 align-items-center" id="awards" style="display:none;">
+      <div class="w-100">
+        <h2 class="mb-5">Awards &amp; Certifications</h2>
+        <ul class="fa-ul mb-0">
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Google Analytics Certified Developer</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Mobile Web Specialist - Google Certification</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            1<sup>st</sup>
+            Place - University of Colorado Boulder - Emerging Tech Competition 2009</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            1<sup>st</sup>
+            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            2<sup>nd</sup>
+            Place - University of Colorado Boulder - Emerging Tech Competition 2008</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            1<sup>st</sup>
+            Place - James Buchanan High School - Hackathon 2006</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            3<sup>rd</sup>
+            Place - James Buchanan High School - Hackathon 2005</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <!--<script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  Plugin JavaScript 
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  Custom scripts for this template 
+  <script src="js/resume.min.js"></script>-->
+
+</body>
+
+</html>

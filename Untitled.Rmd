@@ -1,0 +1,65 @@
+---
+title: "SNA REPORT"
+output: html_document
+params:
+  rawData: NA
+  instructorsName: NA
+  facultyName: NA
+---
+
+```{r code, echo=FALSE}
+library(shiny)
+library(tidyverse)
+library(visNetwork)
+library(DT)
+library(stringi)
+library(shinyalert)
+library(rsconnect)
+instructors <- params$rawData %>%
+      select(params$instructorsName) %>%
+      distinct() %>%
+      rename(labelName = params$instructorsName) %>%
+      mutate(label2 = "(L)")%>%
+      unite("label", labelName:label2, sep=" ")
+instructors <- mutate(instructors, group = "Librarian")
+faculty <- params$rawData %>%
+      select(params$facultyName) %>%
+      distinct() %>%
+      rename(labelName = params$facultyName)%>%
+      mutate(label2 = "(F)")%>%
+      unite("label", labelName:label2, sep=" ")
+faculty <- mutate(faculty, group = "Faculty")
+nodes <- full_join(instructors, faculty)
+nodes <- nodes %>%
+      rowid_to_column("id")
+nodes <- mutate(nodes, title = label)
+per_act <- full_join(instructors,faculty)
+per_act <- params$rawData %>%
+      group_by_( params$instructorsName, params$facultyName ) %>%
+      summarise(weight = n()) %>%
+      rename( ins = params$instructorsName )%>%
+      rename( fact = params$facultyName )%>%
+      mutate( inslabel = "(L)") %>%
+      mutate( factlabel = "(F)") %>%
+      unite("uniteins", c("ins","inslabel"), sep=" ") %>%
+      unite("unitefact", c("fact","factlabel"), sep=" ") %>%
+      ungroup()
+edges <- per_act %>% 
+      left_join(nodes, by = c( uniteins = "label")) %>% 
+      rename(from = id)
+edges <- edges %>% 
+      left_join(nodes, by = c( unitefact = "label")) %>% 
+      rename(to = id)
+edges <- select(edges, from, to, weight)
+edges <- mutate(edges, title = "Instruction")
+network <- visNetwork(nodes, edges) %>%
+      visPhysics(solver = "forceAtlas2Based") %>%
+      visInteraction(hover = TRUE) %>%
+      visEdges(smooth = FALSE) %>%
+      visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE, selectedBy = "group") %>%
+      visEvents(hoverNode = "function(nodes) {
+                Shiny.onInputChange('current_node_id', nodes);
+                ;}")
+network
+```
+
