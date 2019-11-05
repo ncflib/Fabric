@@ -3,6 +3,7 @@ library(tidyverse)
 library(visNetwork)
 library(DT)
 library(stringi)
+library(digest)
 library(shinyalert)
 library(rsconnect)
 
@@ -13,7 +14,7 @@ books <- list("dataset.csv")
 instructorsName = 'Instructors'
 facultyName = 'Faculty'
 
-columnNamesDone = 1
+columnNamesDone = 0
 
 # Define UI for data upload app ----install
 ui <- fluidPage(
@@ -74,24 +75,40 @@ ui <- fluidPage(
 # Define server logic to read selected file ----
 server <- function(input, output, session) {
   rawData <- read.csv("dataset.csv")
-  rv <- reactiveValues(rawData = rawData)
+  facultyList <- read.csv("facultylist.csv")
+  rv <- reactiveValues()
+  rv$facultyList = facultyList
 
   observeEvent(input$selection, {
     if(input$selection != "") {
     updateSelectInput(session = session, inputId = "instructorsname", choices = colnames(read.csv(input$selection)))
     updateSelectInput(session = session, inputId = "facultyname", choices = colnames(read.csv(input$selection)))
-    rv$rawData <<- read.csv(input$selection)
+    rv$rawData <- read.csv(input$selection)
     }
-    
   })
   
   observeEvent(input$file1, {
     if(input$file1$datapath != "") {
       updateSelectInput(session = session, inputId = "instructorsname", choices = colnames(read.csv(input$file1$datapath)))
       updateSelectInput(session = session, inputId = "facultyname", choices = colnames(read.csv(input$file1$datapath)))
-      rv$rawData <<- read.csv(input$file1$datapath)
+      rv$rawData <- read.csv(input$file1$datapath)
     }
-    
+  })
+  
+  observeEvent(input$file2, {
+    if(input$file1$datapath != "") {
+      updateSelectInput(session = session, inputId = "facultyListName", choices = colnames(read.csv(input$file2$datapath)))
+      updateSelectInput(session = session, inputId = "facultyListDivision", choices = colnames(read.csv(input$file2$datapath)))
+      rv$facultyList <- read.csv(input$file2$datapath)
+    }
+  })
+  
+  observeEvent(input$selection2, {
+    if(input$selection2 != "") {
+      updateSelectInput(session = session, inputId = "facultyListName", choices = colnames(read.csv(input$selection2)))
+      updateSelectInput(session = session, inputId = "facultyListDivision", choices = colnames(read.csv(input$selection2)))
+      rv$facultyList <- read.csv(input$selection2)
+    }
   })
   
   instructorsName <- eventReactive(input$instructorsname, {
@@ -101,14 +118,6 @@ server <- function(input, output, session) {
   facultyName <- eventReactive(input$facultyname, {
     return(input$facultyname)
   })
-  
-  #rawData <- eventReactive(input$file1, {
-  #  read.csv(input$file1$datapath)
-  #})
-  
-  #rawData <- eventReactive(input$selection, {
-  #  read.csv(input$selection)
-  #})
   
   
    
@@ -130,11 +139,30 @@ server <- function(input, output, session) {
     
   }, options = list( paging = 0, searching = 0, info = 0, ordering = 0 ))
   
+  output$facultyList <- DT::renderDataTable({
+    
+    # when reading semicolon separated files,
+    # having a comma separator causes `read.csv` to error
+    tryCatch(
+      {
+        df <- rv$facultyList
+      },
+      error = function(e) {
+        # return a safeError if a parsing error occurs
+        stop(safeError(e))
+      }
+    )
+    
+    return(head(df))
+    
+  }, options = list( paging = 0, searching = 0, info = 0, ordering = 0 ))
+  
   # network render 
   
   output$network <- renderVisNetwork({
     
-    if(columnNamesDone == 1) {
+    if(instructorsName() != "" && facultyName() != "") {
+      print("done")
     instructors <- rv$rawData %>%
       select(instructorsName()) %>%
       distinct() %>%
@@ -143,15 +171,24 @@ server <- function(input, output, session) {
       unite("label", labelName:label2, sep=" ")
     
     instructors <- mutate(instructors, group = "Librarian")
+    faculty <- rv$rawData
     
-    faculty <- rv$rawData %>%
-      select(facultyName()) %>%
+    divisionList <- merge(x = rv$rawData, y = rv$facultyList, by = "Faculty2", all.x = TRUE)
+    
+    #divisionList = select(divisionList, Faculty2, Division)
+
+    #print(head(divisionList))
+    
+    faculty <- divisionList %>%
+      select(facultyName(),Division) %>%
       distinct() %>%
       rename(labelName = facultyName())%>%
-      mutate(label2 = "(F)")%>%
-      unite("label", labelName:label2, sep=" ")
+      rename(group = Division)%>%
+      mutate(label2 = "(F)") %>%
+      unite("label", c(labelName,label2), sep=" ")
     
-    faculty <- mutate(faculty, group = "Faculty")
+
+    print(head(faculty))
     
     nodes <- full_join(instructors, faculty)
     
@@ -159,6 +196,8 @@ server <- function(input, output, session) {
       rowid_to_column("id")
     
     nodes <- mutate(nodes, title = label)
+    
+    nodes
     
     per_act <- full_join(instructors,faculty)
     
@@ -172,6 +211,8 @@ server <- function(input, output, session) {
       unite("uniteins", c("ins","inslabel"), sep=" ") %>%
       unite("unitefact", c("fact","factlabel"), sep=" ") %>%
       ungroup()
+    
+    per_act
         
     edges <- per_act %>% 
       left_join(nodes, by = c( uniteins = "label")) %>% 

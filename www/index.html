@@ -108,10 +108,8 @@
           <div class="col-sm-6 col-md-6">
             <label>Choose an example dataset</label>
             <div class="form-group shiny-input-container">
-            <div>
-              <select id="selection" name="selection" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);'><option value="" disabled selected>Select a dataset</option><option value="dataset.csv">dataset.csv</option></select>
+              <select id="selection" name="selection" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);'><option value="" disabled selected>Select a dataset</option><option value="dataset.csv">Example 1</option></select>
               <script type="application/json" data-for="selection" data-nonempty="">{}</script>
-            </div>
           </div>
           </div>
           <div class="col-sm-6 col-md-6 border-left">
@@ -131,11 +129,46 @@
             </div>
           </div>
           </div>
-        </div>
+        </div>         
+          <div class="form-check" class="row">
+            <input type="checkbox" name="facultylist" id="facultylist" onChange ='if(this.checked) { $("#facultyListUpload").fadeIn(1500); $("#facultyListOn").show(); } else { $("#facultyListUpload").fadeOut(1000); $("#facultyListOn").hide();}' style="margin-right:10px" />
+            <label class="form-check-label" >I would like to add a faculty list.</label>
+          </div>
+          <div class="row" id="facultyListUpload" style="display:none; margin-top:30px">
+          <div class="col-sm-6 col-md-6">
+            <label>Choose an example faculty list</label>
+            <div class="form-group shiny-input-container">
+              <select id="selection2" name="selection2" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);'><option value="" disabled selected>Select a faculty list</option><option value="facultylist.csv">NCF Faculty List</option></select>
+          </div>
+          </div>
+          <div class="col-sm-6 col-md-6 border-left">
+            <label>Upload your own faculty list</label>
+            <div class="form-group shiny-input-container">
+            <div class="input-group">
+              <label class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                  Browse...
+                  <input id="file2" name="file2" type="file" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);' style="display: none;" accept="text/csv,text/comma-separated-values,text/plain,.csv"/>
+                </span>
+              </label>
+              <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
+            </div>
+            <div id="file1_progress" class="progress progress-striped active shiny-file-input-progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+          </div>
+          </div>
+                    
+          <div class="form-check" class="row">
+            <input type="checkbox" name="anonCheck" id="anonCheck" style="margin-right:10px"/>
+            <label class="form-check-label" >I would like to anonymize all the names.</label>
+          </div>
+          
       </div>
 
       <div class="alert alert-success" id="nextpartTextFileUpload" style="display:none; margin-top:10px" role="alert"> Great! Now, you can continue to the data verification part.</div>
-      <a id="fileuploadcontinue" class="btn btn-primary js-scroll-trigger" onClick='$("#dataverification").css("visibility", "visible"); $("#dataVerificationMenu").show();' href="#dataverification" style="pointer-events: none; opacity:0.3">Continue</a>
+      <a id="fileuploadcontinue" class="btn btn-primary js-scroll-trigger" onClick='$("#dataverification").css("visibility", "visible"); $("#dataVerificationMenu").show();' href="#dataverification" style="pointer-events: none; opacity:0.3; margin-top:50px">Continue</a>
 
       </div>
 
@@ -144,12 +177,12 @@
     <hr class="m-0">
     <section class="resume-section p-3 p-lg-5 justify-content-center" id="dataverification" style="visibility:hidden;">
       <div class="w-100">
-        <h2 class="mb-5">Data verification</h2>
-        <p> Please indicate the column names that represent "Instructors" and "Faculty" </p>
+        <h2 class="mb-5">Data verification</h2>        
         <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6 col-md-6">
             <div class="form-group shiny-input-container">
+            <p> Please indicate the column names that represent "Instructors" and "Faculty" </p>
                   <label>Instructors column ( librarians )</label>
                   <select id="instructorsname" name="instructorsname">
                       <option value="" disabled selected>Select a dataset</option>
@@ -162,19 +195,28 @@
                       <option value="dataset.csv"></option>
                   </select>
             </div>
+            <div id="contents" name="contents" style="width:45%; overflow-x: scroll; height:auto;" class="datatables html-widget html-widget-output"></div>
+          </div>
+
+          <div class="col-sm-6 col-md-6">
+            <p> Please indicate the column names that represent "Faculty member name" and "Division" </p>
+            <div class="form-group shiny-input-container">
+                  <label>Faculty Member Name</label>
+                  <select id="facultyListName" name="facultyListName">
+                      <option value="" disabled selected>Select a column</option>
+                  </select>      
+            
+                  <label>Faculty Member's Division</label>
+                  <select id="facultyListDivision" name="facultyListDivision">
+                      <option value="" disabled selected>Select a column</option>
+                  </select>
+            </div>
+            <div id="facultyList" name="facultyList" style="width:45%; overflow-x: scroll; height:auto;" class="datatables html-widget html-widget-output"></div>
           </div>
         </div>
       </div>
 
-        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="resume-content">
-            <div id="contents" name="contents" style="width:80%; height:auto;" class="datatables html-widget html-widget-output"></div>
-
-            <br /><br />
-            <a class="btn btn-primary js-scroll-trigger" onClick='$("#results").css("visibility", "visible"); $("#resultsMenu").show();' href="#results">Continue</a>
-
-          </div>
-        </div>
+        <a class="btn btn-primary js-scroll-trigger" onClick='$("#results").css("visibility", "visible"); $("#resultsMenu").show();' href="#results">Continue</a>
 
       </div>
 

@@ -32,6 +32,7 @@ faculty <- mutate(faculty, group = "Faculty")
 nodes <- full_join(instructors, faculty)
 nodes <- nodes %>%
       rowid_to_column("id")
+nodes
 nodes <- mutate(nodes, title = label)
 per_act <- full_join(instructors,faculty)
 per_act <- params$rawData %>%
@@ -44,6 +45,7 @@ per_act <- params$rawData %>%
       unite("uniteins", c("ins","inslabel"), sep=" ") %>%
       unite("unitefact", c("fact","factlabel"), sep=" ") %>%
       ungroup()
+per_act
 edges <- per_act %>% 
       left_join(nodes, by = c( uniteins = "label")) %>% 
       rename(from = id)
