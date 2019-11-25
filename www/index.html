@@ -20,8 +20,8 @@
 
   <!-- Custom styles for this template -->
  
-    <script type="application/shiny-singletons">4d61fcd65165225d66b68a85746344f43fdea1ab</script>
-  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];shiny[1.3.2];selectize[0.11.2];htmlwidgets[1.3];datatables-css[0.0.0];datatables-binding[0.9];crosstalk[1.0.0];vis[4.20.1];visNetwork-binding[2.0.8];bootstrap[3.3.7]</script>
+<script type="application/shiny-singletons">4d61fcd65165225d66b68a85746344f43fdea1ab</script>
+<script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];shiny[1.3.2];selectize[0.11.2];htmlwidgets[1.3];datatables-css[0.0.0];datatables-binding[0.9];crosstalk[1.0.0];vis[4.20.1];visNetwork-binding[2.0.8];bootstrap[3.3.7]</script>
 <script src="assets/json2-min.js"></script>
 <script src="assets/jquery.min.js"></script>
 <link href="assets/shiny.css" rel="stylesheet" />
@@ -56,7 +56,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="https://dss.ncf.edu/main/user/images/g5_hydrogen/ncfbloud.png" alt="">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/logo.jpg" alt="">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,10 +87,9 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="welcome">
       <div class="w-100">
-        <h1 class="mb-0">Social Network
-          <span class="text-primary">Analysis</span>
+        <h1 class="mb-0">Social Network<span class="text-primary">Analysis</span>
         </h1>
-        <p class="lead mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p class="lead mb-5">A Shiny App that allows you to quickly and easily visualize library instruction sessions in the form of a network graph.</p>
         <a class="btn btn-primary js-scroll-trigger" href="#fileupload">Continue</a>
       </div>
     </section>
@@ -131,14 +130,15 @@
           </div>
         </div>         
           <div class="form-check" class="row">
-            <input type="checkbox" name="facultylist" id="facultylist" onChange ='if(this.checked) { $("#facultyListUpload").fadeIn(1500); $("#facultyListOn").show(); } else { $("#facultyListUpload").fadeOut(1000); $("#facultyListOn").hide();}' style="margin-right:10px" />
-            <label class="form-check-label" >I would like to add a faculty list.</label>
+            <input type="checkbox" name="facultyCheck" id="facultyCheck" onChange ='if(this.checked) { $("#facultyListUpload").fadeIn(1500); $("#facultyListOn").show(); } else { $("#facultyListUpload").fadeOut(1000); $("#facultyListOn").hide();}' style="margin-right:10px" />
+            <label class="form-check-label" >Add a faculty list</label>
           </div>
           <div class="row" id="facultyListUpload" style="display:none; margin-top:30px">
           <div class="col-sm-6 col-md-6">
             <label>Choose an example faculty list</label>
             <div class="form-group shiny-input-container">
-              <select id="selection2" name="selection2" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);'><option value="" disabled selected>Select a faculty list</option><option value="facultylist.csv">NCF Faculty List</option></select>
+              <select id="selection2" name="selection2" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500); $("#facultySelectionDiv").css("visibility", "visible");'><option value="" disabled selected>Select a faculty list</option><option value="facultylist.csv">NCF Faculty List</option></select>
+              <script type="application/json" data-for="selection2" data-nonempty="">{}</script>
           </div>
           </div>
           <div class="col-sm-6 col-md-6 border-left">
@@ -148,7 +148,7 @@
               <label class="input-group-btn">
                 <span class="btn btn-default btn-file">
                   Browse...
-                  <input id="file2" name="file2" type="file" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500);' style="display: none;" accept="text/csv,text/comma-separated-values,text/plain,.csv"/>
+                  <input id="file2" name="file2" type="file" onchange = '$("#fileuploadcontinue").css("pointer-events", "auto").css("opacity", 1); $("#nextpartTextFileUpload").fadeIn(1500); $("#facultySelectionDiv").css("visibility", "visible");' style="display: none;" accept="text/csv,text/comma-separated-values,text/plain,.csv"/>
                 </span>
               </label>
               <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
@@ -162,12 +162,12 @@
                     
           <div class="form-check" class="row">
             <input type="checkbox" name="anonCheck" id="anonCheck" style="margin-right:10px"/>
-            <label class="form-check-label" >I would like to anonymize all the names.</label>
+            <label class="form-check-label" >Anonymize names</label>
           </div>
           
       </div>
 
-      <div class="alert alert-success" id="nextpartTextFileUpload" style="display:none; margin-top:10px" role="alert"> Great! Now, you can continue to the data verification part.</div>
+      <div class="alert alert-success" id="nextpartTextFileUpload" style="display:none; margin-top:30px" role="alert"> Great! Now, you can continue to the data verification part.</div>
       <a id="fileuploadcontinue" class="btn btn-primary js-scroll-trigger" onClick='$("#dataverification").css("visibility", "visible"); $("#dataVerificationMenu").show();' href="#dataverification" style="pointer-events: none; opacity:0.3; margin-top:50px">Continue</a>
 
       </div>
@@ -188,35 +188,39 @@
                       <option value="" disabled selected>Select a dataset</option>
                       <option value="dataset.csv">dataset.csv</option>
                   </select>      
+                  <script type="application/json" data-for="instructorsname" data-nonempty="">{}</script>
             
                   <label>Faculty column ( faculty members )</label>
                   <select id="facultyname" name="facultyname">
                       <option value="" disabled selected>Select a dataset</option>
                       <option value="dataset.csv"></option>
                   </select>
+                  <script type="application/json" data-for="facultyname" data-nonempty="">{}</script>
             </div>
-            <div id="contents" name="contents" style="width:45%; overflow-x: scroll; height:auto;" class="datatables html-widget html-widget-output"></div>
+            <div id="contents" name="contents" style="width:100%; overflow: scroll; height:500px;" class="datatables html-widget html-widget-output"></div>
           </div>
 
-          <div class="col-sm-6 col-md-6">
+          <div class="col-sm-6 col-md-6" id="facultySelectionDiv" style="visibility:hidden">
             <p> Please indicate the column names that represent "Faculty member name" and "Division" </p>
-            <div class="form-group shiny-input-container">
+            <div class="form-group shiny-input-container" >
                   <label>Faculty Member Name</label>
                   <select id="facultyListName" name="facultyListName">
                       <option value="" disabled selected>Select a column</option>
                   </select>      
+                  <script type="application/json" data-for="facultyListName" data-nonempty="">{}</script>
             
                   <label>Faculty Member's Division</label>
                   <select id="facultyListDivision" name="facultyListDivision">
                       <option value="" disabled selected>Select a column</option>
                   </select>
+                  <script type="application/json" data-for="facultyListDivision" data-nonempty="">{}</script>
             </div>
-            <div id="facultyList" name="facultyList" style="width:45%; overflow-x: scroll; height:auto;" class="datatables html-widget html-widget-output"></div>
+            <div id="facultyList" name="facultyList" style="width:100%; overflow: scroll; height:500px;" class="datatables html-widget html-widget-output"></div>
           </div>
         </div>
       </div>
 
-        <a class="btn btn-primary js-scroll-trigger" onClick='$("#results").css("visibility", "visible"); $("#resultsMenu").show();' href="#results">Continue</a>
+        <a class="btn btn-primary js-scroll-trigger" onClick='$("#results").css("visibility", "visible"); $("#resultsMenu").show();' href="#results" style="margin-top:30px;">Continue</a>
 
       </div>
 
@@ -227,9 +231,20 @@
     <section class="resume-section p-3 p-lg-5 align-items-center" id="results" style="visibility:hidden;">
       <div class="w-100">
         <h2 class="mb-5">Results</h2>
+        <div class="row">
+	        <div class="col-sm-8 col-md-8">
+	        <div id="network" name="network" style="width:100%; height:650px; " class="visNetwork html-widget html-widget-output"></div>
+	   		</div>
 
-        <div id="network" name="network" style="width:100%; height:400px; " class="visNetwork html-widget html-widget-output"></div>
+	   		<div class="col-sm-4 col-md-4">
+	        <div id="pieDiv" name="pieDiv" class="shiny-plot-output" style="width: 100% ; 
+	        height:300px;">	        	
+	        </div>
 
+          <div id="top5div" name="top5div" style="width:100%; overflow: scroll; height:300px;" class="datatables html-widget html-widget-output"></div>
+	    	</div>	
+    	</div>
+        
         <a class="btn btn-primary js-scroll-trigger" onClick='$("#export").css("visibility", "visible"); $("#exportMenu").show();' href="#export">Want to export the results ?</a>
     </section>
 
@@ -246,53 +261,7 @@
       </div>
     </section>
 
-    <hr class="m-0">
-
-    <section class="resume-section p-3 p-lg-5 align-items-center" id="awards" style="display:none;">
-      <div class="w-100">
-        <h2 class="mb-5">Awards &amp; Certifications</h2>
-        <ul class="fa-ul mb-0">
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Google Analytics Certified Developer</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Mobile Web Specialist - Google Certification</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - University of Colorado Boulder - Emerging Tech Competition 2009</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            2<sup>nd</sup>
-            Place - University of Colorado Boulder - Emerging Tech Competition 2008</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - James Buchanan High School - Hackathon 2006</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            3<sup>rd</sup>
-            Place - James Buchanan High School - Hackathon 2005</li>
-        </ul>
-      </div>
-    </section>
-
   </div>
-
-  <!-- Bootstrap core JavaScript -->
-  <!--<script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  Plugin JavaScript 
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  Custom scripts for this template 
-  <script src="js/resume.min.js"></script>-->
 
 </body>
 

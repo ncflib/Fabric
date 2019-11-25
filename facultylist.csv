@@ -1,124 +1,124 @@
-Faculty2, Division,
-Kim Anderson,Humanities,
-David Berry,Humanities,
-Dan Bethune,Humanities,
-Virginia P Bray,Humanities,
-Katherine Brion,Humanities,
-Angela Buck,Humanities,
-Ryan Buyssens,Humanities,
-Yecheng (Kent) Cao,Humanities,
-Emily Carr,Humanities,
-Magdalena E. Carrasco,Humanities,
-Frank Chaich,Humanities,
-Maribeth Clark,Humanities,
-Nicholas Clarkson,Humanities,
-Tabea Cornel,Humanities,
-Mark Dancigers,Humanities,
-Nicolas Delon,Humanities,
-Andrea Dimino,Humanities,
-Tetyana Dzyadevych,Humanities,
-Aron Z. Edidin,Humanities,
-April N. Flakne,Humanities,
-Nathan Frantz,Humanities,
-Lauren Hansen,Humanities,
-Wes Kline,Humanities,
-Melissa Kreider,Humanities,
-Sonia Labrador-Rodríguez,Humanities,
-Fang-Yu Li,Humanities,
-Manu Lopez,Humanities,
-Andrei Malaev-Babel,Humanities,
-Mariam Manzur-Leiva,Humanities,
-Sarah Melcher,Humanities,
-Susan Marks,Humanities,
-Gordon E. Michalson,Humanities,
-Stephen T. Miles,Humanities,
-Nova Myhill,Humanities,
-Nassima Neggaz,Humanities,
-Christopher Noble,Humanities,
-Tim O’Donnell,Humanities,
-José Alberto Portugal,Humanities,
-Amy B. Reid,Humanities,
-David S. Rohrbacher,Humanities,
-Carl Shaw,Humanities,
-Wendy Sutherland,Humanities,
-Jocelyn C. Van Tuyl,Humanities,
-Hugo Viera Vargas,Humanities,
-Diego Villada,Humanities,
-Miriam L. Wallace,Humanities,
-Leymis J. Wilmott,Humanities,
-Alina Wyman,Humanities,
-Jessica Young,Humanities,
-Robert Zamsky,Humanities,
-Jing Zhang,Humanities,
-Rebecca Black,Natural Science,
-Burcin* Bozkaya,Natural Science,
-Amy Clore,Natural Science,
-Don Colladay,Natural Science,
-Melissa* Crow,Natural Science,
-Erika Diaz-Almeyda,Natural Science,
-Tiffany Doan,Natural Science,
-John Doucette,Natural Science,
-Kristopher Fennie,Natural Science,
-Jayne Gardiner,Natural Science,
-Sandra Gilchrist,Natural Science,
-David Gillman,Natural Science,
-Karsten Henckell,Natural Science,
-Vasanth Iyer,Natural Science,
-Lin Jiang,Natural Science,
-Rebekah Jones,Natural Science,
-Gary* Kalmanovich,Natural Science,
-Bernhard* Klingenberg,Natural Science,
-Christopher Kottke,Natural Science,
-Elizabeth Leininger,Natural Science,
-Matt* Lepinski,Natural Science,
-Patrick T. McDonald,Natural Science,
-Brad Oberle,Natural Science,
-Donal O’Shea,Natural Science,
-Levente Pap,Natural Science,
-Eirini Poimenidou,Natural Science,
-Tania Roy,Natural Science,
-George Ruppeiner,Natural Science,
-Tyrone Ryba,Natural Science,
-Athena Rycyk,Natural Science,
-Emily Saarinen,Natural Science,
-Mariana Sendova,Natural Science,
-Steven Shipman,Natural Science,
-Andrey Skripnikov,Natural Science,
-Gerardo Toro-Farmer,Natural Science,
-Katherine Walstrom,Natural Science,
-Necmettin Yildirim,Natural Science,
-Frank Alcock,Social Science,
-Anthony P. Andrews,Social Science,
-Uzi I. Baram,Social Science,
-Michelle Barton,Social Science,
-Gordon Bauer,Social Science,
-Carrie Beneš,Social Science,
-David K. Brain,Social Science,
-Kathleen Casto,Social Science,
-Richard D. Coe,Social Science,
-Nat Colletta,Social Science,
-Tracy Collins,Social Science,
-Peter Cook,Social Science,
-Duff Cooper,Social Science,
-Catherine Cottrell,Social Science,
-Erin Dean,Social Science,
-Emily Fairchild,Social Science,
-Barbara Feldman,Social Science,
-Amanda Fidalgo,Social Science,
-Keith A. Fitzgerald,Social Science,
-Ilaria Giglioli,Social Science,
-Brendan Goff,Social Science,
-Michael Gorup,Social Science,
-Steven Graham,Social Science,
-Heidi E. Harley,Social Science,
-David A. Harvey,Social Science,
-Sarah Hernandez,Social Science,
-Barbara Hicks,Social Science,
-Tarron Khemraj,Social Science,
-Thomas McCarthy,Social Science,
-Mark Paul,Social Science,
-Jack Reilly,Social Science,
-Xia Shi,Social Science,
-Maria D Vesperi,Social Science,
-Sherry Yu,Social Science,
-Queen Meccasia Zabriskie,Social Science,
+Faculty,Division
+Kim Anderson,Humanities
+David Berry,Humanities
+Dan Bethune,Humanities
+Virginia P Bray,Humanities
+Katherine Brion,Humanities
+Angela Buck,Humanities
+Ryan Buyssens,Humanities
+Yecheng (Kent) Cao,Humanities
+Emily Carr,Humanities
+Magdalena Carrasco,Humanities
+Frank Chaich,Humanities
+Maribeth Clark,Humanities
+Nicholas Clarkson,Humanities
+Tabea Cornel,Humanities
+Mark Dancigers,Humanities
+Nicolas Delon,Humanities
+Andrea Dimino,Humanities
+Tetyana Dzyadevych,Humanities
+Aron Z. Edidin,Humanities
+April Flakne,Humanities
+Nathan Frantz,Humanities
+Lauren Hansen,Humanities
+Wes Kline,Humanities
+Melissa Kreider,Humanities
+Sonia Labrador Rodríguez,Humanities
+Fang-Yu Li,Humanities
+Manu Lopez,Humanities
+Andrei Malaev-Babel,Humanities
+Mariam Manzur-Leiva,Humanities
+Sarah Melcher,Humanities
+Susan Marks,Humanities
+Gordon E. Michalson,Humanities
+Stephen T. Miles,Humanities
+Nova Myhill,Humanities
+Nassima Neggaz,Humanities
+Christopher Noble,Humanities
+Tim O’Donnell,Humanities
+José Alberto Portugal,Humanities
+Amy B. Reid,Humanities
+David S. Rohrbacher,Humanities
+Carl Shaw,Humanities
+Wendy Sutherland,Humanities
+Jocelyn C. Van Tuyl,Humanities
+Hugo Viera-Vargas,Humanities
+Diego Villada,Humanities
+Miriam L. Wallace,Humanities
+Leymis J. Wilmott,Humanities
+Alina Wyman,Humanities
+Jessica Young,Humanities
+Robert Zamsky,Humanities
+Jing Zhang,Humanities
+Rebecca Black,Natural Science
+Burcin* Bozkaya,Natural Science
+Amy Clore,Natural Science
+Don Colladay,Natural Science
+Melissa* Crow,Natural Science
+Erika Diaz-Almeyda,Natural Science
+Tiffany Doan,Natural Science
+John Doucette,Natural Science
+Kristopher Fennie,Natural Science
+Jayne Gardiner,Natural Science
+Sandra Gilchrist,Natural Science
+David Gillman,Natural Science
+Karsten Henckell,Natural Science
+Vasanth Iyer,Natural Science
+Lin Jiang,Natural Science
+Rebekah Jones,Natural Science
+Gary* Kalmanovich,Natural Science
+Bernhard* Klingenberg,Natural Science
+Christopher Kottke,Natural Science
+Liz Leininger,Natural Science
+Matt* Lepinski,Natural Science
+Patrick T. McDonald,Natural Science
+Brad Oberle,Natural Science
+Donal O’Shea,Natural Science
+Levente Pap,Natural Science
+Eirini Poimenidou,Natural Science
+Tania Roy,Natural Science
+George Ruppeiner,Natural Science
+Tyrone Ryba,Natural Science
+Athena Rycyk,Natural Science
+Emily Saarinen,Natural Science
+Mariana Sendova,Natural Science
+Steven Shipman,Natural Science
+Andrey Skripnikov,Natural Science
+Gerardo Toro-Farmer,Natural Science
+Katherine Walstrom,Natural Science
+Necmettin Yildirim,Natural Science
+Frank Alcock,Social Science
+Anthony P. Andrews,Social Science
+Uzi I. Baram,Social Science
+Michelle Barton,Social Science
+Gordon Bauer,Social Science
+Carrie Beneš,Social Science
+David K. Brain,Social Science
+Kathleen Casto,Social Science
+Richard D. Coe,Social Science
+Nat Colletta,Social Science
+Tracy Collins,Social Science
+Peter Cook,Social Science
+Duff Cooper,Social Science
+Cathy Cottrell,Social Science
+Erin Dean,Social Science
+Emily Fairchild,Social Science
+Barbara Feldman,Social Science
+Amanda Fidalgo,Social Science
+Keith A. Fitzgerald,Social Science
+Ilaria Giglioli,Social Science
+Brendan Goff,Social Science
+Michael Gorup,Social Science
+Steven Graham,Social Science
+Heidi Harley,Social Science
+David A. Harvey,Social Science
+Sarah Hernandez,Social Science
+Barbara Hicks,Social Science
+Tarron Khemraj,Social Science
+Thomas McCarthy,Social Science
+Mark Paul,Social Science
+Jack Reilly,Social Science
+Xia Shi,Social Science
+Maria D Vesperi,Social Science
+Sherry Yu,Social Science
+Mecca Zabriskie,Social Science
