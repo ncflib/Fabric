@@ -4,8 +4,6 @@ library(visNetwork)
 library(DT)
 library(stringi)
 library(digest)
-library(shinyalert)
-library(rsconnect)
 
 
 # global
@@ -149,7 +147,7 @@ server <- function(input, output, session) {
       mutate(label2 = "(F)") %>%
       unite("label", c(labelName,label2), sep=" ")
     } else {
-      faculty <<- divisionList %>%
+      faculty <<- rv$rawData %>%
         select(facultyName()) %>%
         distinct() %>%
         rename(labelName = facultyName())%>%
@@ -198,6 +196,7 @@ server <- function(input, output, session) {
     
     if(rv$anonCheck == TRUE) {
     nodes$label <<- anon(nodes$label)
+    nodes$title <<- anon(nodes$title);
     }
     
     network <<- visNetwork(nodes, edges) %>%
@@ -218,11 +217,18 @@ server <- function(input, output, session) {
     if(!is.null(input$current_node_id)){
     targetNodes = nodes[which(nodes$id == input$current_node_id),]
     targetInteractions = edges[which( (edges$from == input$current_node_id) | (edges$to == input$current_node_id)),]
-    targetDivisions = merge( x = targetInteractions, y = nodes, by.x = 'to', by.y = 'id', all.x= TRUE);
+    if(nrow(targetInteractions)>0) {
+      if(targetNodes["group"] != "Librarian" || is.na(targetNodes["group"])) { 
+        targetDivisions = merge( x = targetInteractions, y = nodes, by.x = 'from', by.y = 'id', all.x= TRUE); 
+      } else {
+        targetDivisions = merge( x = targetInteractions, y = nodes, by.x = 'to', by.y = 'id', all.x= TRUE);
+      }
     targetDivisions = targetDivisions$group;
     targetDivisions[is.na(targetDivisions)] = "NA"
     pie(table(targetDivisions, useNA = "always"));
     }
+    }
+    
     
   })
   
@@ -230,14 +236,18 @@ server <- function(input, output, session) {
     if(!is.null(input$current_node_id)){
       targetNodes = nodes[which(nodes$id == input$current_node_id),]
       targetInteractions = edges[which( (edges$from == input$current_node_id) | (edges$to == input$current_node_id)),]
-      targetDivisions = merge( x = targetInteractions, y = nodes, by.x = 'to', by.y = 'id', all.x= TRUE);
-      print(targetDivisions)
+      if(nrow(targetInteractions)>0) {
+      if(targetNodes["group"] != "Librarian" || is.na(targetNodes["group"])) { 
+        targetDivisions = merge( x = targetInteractions, y = nodes, by.x = 'from', by.y = 'id', all.x= TRUE); 
+      } else {
+        targetDivisions = merge( x = targetInteractions, y = nodes, by.x = 'to', by.y = 'id', all.x= TRUE);
+      }
       targetTable = targetDivisions[order(targetDivisions$weight, decreasing = TRUE),]
       dataFrameTop5 = data.frame(targetTable$title.y,targetTable$weight);
       colnames(dataFrameTop5)[1] = "Faculty"
       colnames(dataFrameTop5)[2] = "# of Interactions"
-      print(dataFrameTop5)
       return(dataFrameTop5);
+      }
     }
   }, options = list( paging = 0, searching = 0, info = 0, ordering = 0 ))
   
