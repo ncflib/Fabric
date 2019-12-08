@@ -5,7 +5,6 @@ library(DT)
 library(stringi)
 library(digest)
 
-
 # global
 decideColor <- function(x,y) {
   if(x >= y) {
