@@ -1,5 +1,4 @@
 
-# Fabric
 ![Fabric Logo](https://dss.ncf.edu/fabric/img/fabrictitle.png)
 
 Fabric is a lightweight, open-source tool for visualizing and reporting library relationships.
