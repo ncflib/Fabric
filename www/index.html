@@ -56,7 +56,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/logo.jpg" alt="">
+        <img class="img-fluid  mx-auto mb-2" src="img/fabric.png" alt="">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,11 +87,26 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="welcome">
       <div class="w-100">
-        <h1 class="mb-0"><span class="text-primary">Fabric</span>
-        </h1>
+        <!-- <h1 class="mb-0"><span class="text-primary">Fabric</span>
+        </h1> -->
+        <img src="img/fabrictitle.png" height="120" />
         <p class="lead mb-5">Fabric is a lightweight, open-source tool for visualizing and reporting library relationships.
         To get started, prepare your dataset and hit the Continue button.</p>
-        <a class="btn btn-primary js-scroll-trigger" href="#fileupload">Continue</a>
+        <div class="row">
+          <div class="col-sm-4 col-md-4">
+          	<h2>Data</h2>
+          	The first step is to extract data from your library's internal raporting software (such as LibInsight). Fabric is not software dependant but your data has to be 2 columns: faculty member and librarian. <br />
+          	<img src="img/dataset.png" class="rounded-lg" width="100%">
+          </div>
+          <div class="col-sm-4 col-md-4">
+          	<h2>Cleaning</h2>
+          	Make sure that the names are spelled correctly in every row, since it can cause the same person to be represented by two nodes.
+          </div>
+          <div class="col-sm-4 col-md-4">
+          	<h2>(Optional)</h2>
+          </div>
+      </div>
+        <a class="btn btn-primary js-scroll-trigger" href="#fileupload" style="margin-top:15px">Continue</a>
       </div>
     </section>
 
