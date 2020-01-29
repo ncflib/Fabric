@@ -1,6 +1,7 @@
 
 # Fabric
 ![Fabric Logo](https://dss.ncf.edu/fabric/img/fabrictitle.png)
+
 Fabric is a lightweight, open-source tool for visualizing and reporting library relationships.
 
 Fabric uses R's Shiny library and can be used as a website or a standard R project. Shiny is a powerful R package that makes it easy to build interactive web applications.
