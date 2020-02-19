@@ -8,4 +8,4 @@ Fabric uses R's Shiny library and can be used as a website or a standard R proje
 ## How to use
 To start using Fabric, you can simply go to [https://dss.ncf.edu/fabric/](https://dss.ncf.edu/fabric/)
 
-If you want to use Fabric on your computer, you can download this repository and open the **Fabric.Rproj** file. ( You need RStudio installed in your computer to do that. )
+If you want to use Fabric on your computer, you can download this repository and open the **Fabric.Rproj** file. (You need RStudio installed in your computer to do that). If you want a web-accessible instance of the project but would rather not bother with setting up a server, check out [https://www.shinyapps.io/](https://www.shinyapps.io/), Shiny's freemium hosting solution. 
